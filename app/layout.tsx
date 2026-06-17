@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { OfferPopup } from "@/components/OfferPopup";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,7 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full bg-stone-50 font-sans text-stone-950">{children}</body>
+      <body className="min-h-full bg-stone-50 font-sans text-stone-950">
+        {children}
+        <OfferPopup />
+      </body>
     </html>
   );
 }
