@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { Footer } from "@/components/Footer";
+import { HomeReviews } from "@/components/HomeReviews";
 import { Navbar } from "@/components/Navbar";
 import { services as serviceCatalog } from "@/lib/services";
 
@@ -372,32 +373,7 @@ export default function Home() {
         <section className="bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 dark:bg-white/5">
           <div className="mx-auto max-w-7xl">
             <SectionHeading eyebrow="Testimonials" title="Loved by customers who value calm" />
-            <div className="mt-12 flex snap-x gap-5 overflow-x-auto pb-3">
-              {testimonials.map((testimonial) => (
-                <figure
-                  key={testimonial.name}
-                  className="min-w-[82vw] snap-start rounded-lg border border-stone-200 bg-[#fbfaf5] p-5 shadow-sm sm:min-w-[380px] sm:p-6 dark:border-white/10 dark:bg-stone-950/60"
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="h-12 w-12 rounded-lg bg-cover bg-center"
-                      style={{ backgroundImage: `url(${testimonial.avatar})` }}
-                    />
-                    <div>
-                      <figcaption className="font-semibold">{testimonial.name}</figcaption>
-                      <p className="mt-1 flex gap-0.5 text-[#d5b46a]">
-                        {[1, 2, 3, 4, 5].map((item) => (
-                          <Star key={item} className="fill-current" size={14} />
-                        ))}
-                      </p>
-                    </div>
-                  </div>
-                  <blockquote className="mt-5 text-sm leading-7 text-stone-600 dark:text-stone-300">
-                    &quot;{testimonial.review}&quot;
-                  </blockquote>
-                </figure>
-              ))}
-            </div>
+            <HomeReviews fallback={testimonials} />
           </div>
         </section>
 

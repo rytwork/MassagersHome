@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { requireAuthUser } from "@/lib/auth";
-import { createPendingBooking, getCompletedFreeSessionCount } from "@/lib/firestore";
+import {
+  createPendingBooking,
+  getCompletedFreeSessionCount,
+  hasUnratedCompletedBooking,
+} from "@/lib/firestore";
 import { createRazorpayOrder } from "@/lib/razorpay";
 import { getService } from "@/lib/services";
 import { validateBookingPayload } from "@/lib/validation";
@@ -13,6 +17,13 @@ export async function POST(request: Request) {
 
     if (!result.valid) {
       return NextResponse.json({ error: "Invalid booking details.", errors: result.errors }, { status: 400 });
+    }
+
+    if (await hasUnratedCompletedBooking(user.uid)) {
+      return NextResponse.json(
+        { error: "Please rate your completed massage before booking the next service." },
+        { status: 409 },
+      );
     }
 
     const service = getService(result.data.serviceId);

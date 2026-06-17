@@ -38,8 +38,23 @@ export type Booking = BookingPayload & {
   paymentStatus: PaymentStatus;
   razorpayOrderId?: string;
   razorpayPaymentId?: string;
+  rating?: number | null;
+  ratingReview?: string;
+  ratingSubmittedAt?: string;
   createdAt?: string;
   updatedAt?: string;
+};
+
+export type PublicRating = {
+  id: string;
+  bookingId: string;
+  userId: string;
+  customerName: string;
+  serviceName: string;
+  serviceDistrict: ServiceDistrict;
+  rating: number;
+  review: string;
+  createdAt?: string;
 };
 
 export type UserOfferState = {

@@ -1,7 +1,7 @@
 import { FieldValue } from "firebase-admin/firestore";
 import { getAdminDb } from "./firebase-admin";
 import { getService } from "./services";
-import type { AuthUser, BookingPayload, BookingStatus } from "./types";
+import type { AuthUser, BookingPayload, BookingStatus, PublicRating } from "./types";
 
 export async function createPendingBooking(
   payload: BookingPayload,
@@ -64,6 +64,7 @@ export async function createPendingBooking(
       status: "pending",
       paymentStatus: "pending",
       razorpayOrderId,
+      rating: null,
       createdAt: FieldValue.serverTimestamp(),
       updatedAt: FieldValue.serverTimestamp(),
     };
@@ -73,6 +74,101 @@ export async function createPendingBooking(
   });
 
   return booking;
+}
+
+export async function hasUnratedCompletedBooking(userId: string) {
+  const snap = await getAdminDb()
+    .collection("bookings")
+    .where("userId", "==", userId)
+    .limit(50)
+    .get();
+
+  return snap.docs.some((doc) => {
+    const data = doc.data();
+    return data.status === "completed" && !data.rating;
+  });
+}
+
+export async function submitBookingRating({
+  bookingId,
+  user,
+  rating,
+  review,
+}: {
+  bookingId: string;
+  user: AuthUser;
+  rating: number;
+  review: string;
+}) {
+  const db = getAdminDb();
+  const bookingRef = db.collection("bookings").doc(bookingId);
+  const ratingRef = db.collection("ratings").doc(bookingId);
+  const cleanRating = Math.trunc(rating);
+  const cleanReview = review.trim().replace(/\s+/g, " ");
+
+  if (cleanRating < 1 || cleanRating > 5) {
+    throw new Error("Choose a rating from 1 to 5.");
+  }
+
+  if (cleanReview.length < 10) {
+    throw new Error("Please write a short review before booking again.");
+  }
+
+  if (cleanReview.length > 400) {
+    throw new Error("Please keep your review under 400 characters.");
+  }
+
+  await db.runTransaction(async (transaction) => {
+    const bookingSnap = await transaction.get(bookingRef);
+
+    if (!bookingSnap.exists) {
+      throw new Error("Booking not found.");
+    }
+
+    const booking = bookingSnap.data();
+
+    if (booking?.userId !== user.uid) {
+      throw new Error("You can only rate your own booking.");
+    }
+
+    if (booking?.status !== "completed") {
+      throw new Error("Only completed bookings can be rated.");
+    }
+
+    if (booking?.rating) {
+      throw new Error("This booking has already been rated.");
+    }
+
+    const ratingData = {
+      bookingId,
+      userId: user.uid,
+      customerName: booking.name ?? user.name ?? "MassagersHome customer",
+      customerEmail: user.email,
+      serviceName: booking.serviceName,
+      serviceDistrict: booking.serviceDistrict,
+      rating: cleanRating,
+      review: cleanReview,
+      createdAt: FieldValue.serverTimestamp(),
+    };
+
+    transaction.update(bookingRef, {
+      rating: cleanRating,
+      ratingReview: cleanReview,
+      ratingSubmittedAt: FieldValue.serverTimestamp(),
+      updatedAt: FieldValue.serverTimestamp(),
+    });
+    transaction.set(ratingRef, ratingData);
+  });
+}
+
+export async function listPublicRatings(limit = 6): Promise<PublicRating[]> {
+  const snap = await getAdminDb()
+    .collection("ratings")
+    .orderBy("createdAt", "desc")
+    .limit(limit)
+    .get();
+
+  return snap.docs.map((doc) => serializeDoc(doc.id, doc.data()) as unknown as PublicRating);
 }
 
 export async function confirmPaidBooking({

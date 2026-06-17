@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged, signOut, type User } from "firebase/auth";
-import { CalendarCheck, Loader2, LogOut, RefreshCw } from "lucide-react";
+import { CalendarCheck, Loader2, LockKeyhole, LogOut, RefreshCw, Star } from "lucide-react";
 import { BookingForm } from "@/components/BookingForm";
 import { getFirebaseAuth } from "@/lib/firebase-client";
 import type { Booking } from "@/lib/types";
@@ -19,6 +19,10 @@ export function AccountDashboard() {
 
   const upcomingCount = useMemo(
     () => bookings.filter((booking) => booking.status !== "completed").length,
+    [bookings],
+  );
+  const pendingRatingBooking = useMemo(
+    () => bookings.find((booking) => booking.status === "completed" && !booking.rating) ?? null,
     [bookings],
   );
 
@@ -126,7 +130,24 @@ export function AccountDashboard() {
           <CalendarCheck className="text-emerald-800" size={22} />
           <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Book a session</h2>
         </div>
-        <BookingForm />
+        {pendingRatingBooking ? (
+          <div className="rounded-lg border border-amber-200 bg-amber-50 p-6 shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-100 text-amber-800">
+                <LockKeyhole size={20} />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-stone-950">Rating required</h3>
+                <p className="mt-2 text-sm leading-6 text-stone-700">
+                  Please rate your completed {pendingRatingBooking.serviceName} session before
+                  booking another service.
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <BookingForm />
+        )}
       </section>
 
       <section className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm">
@@ -196,6 +217,110 @@ export function AccountDashboard() {
           </table>
         </div>
       </section>
+      {user && pendingRatingBooking ? (
+        <RatingPopup
+          booking={pendingRatingBooking}
+          user={user}
+          onRated={() => loadBookings(user)}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function RatingPopup({
+  booking,
+  user,
+  onRated,
+}: {
+  booking: Booking;
+  user: User;
+  onRated: () => Promise<void>;
+}) {
+  const [rating, setRating] = useState(5);
+  const [review, setReview] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  async function submitRating() {
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const token = await user.getIdToken();
+      const response = await fetch("/api/user/ratings", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bookingId: booking.id, rating, review }),
+      });
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? "Unable to submit rating.");
+      }
+
+      await onRated();
+    } catch (caughtError) {
+      setError(caughtError instanceof Error ? caughtError.message : "Unable to submit rating.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-end bg-stone-950/45 px-4 pb-5 backdrop-blur-sm sm:items-center sm:justify-center">
+      <div className="w-full max-w-lg rounded-lg bg-white p-6 shadow-2xl">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-800">
+          Session completed
+        </p>
+        <h2 className="mt-3 text-2xl font-semibold tracking-tight text-stone-950">
+          Rate your {booking.serviceName}
+        </h2>
+        <p className="mt-3 text-sm leading-6 text-stone-600">
+          Your feedback helps other customers choose confidently. You can book your next service
+          after submitting this rating.
+        </p>
+
+        <div className="mt-5 flex gap-2" aria-label="Choose rating">
+          {[1, 2, 3, 4, 5].map((value) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => setRating(value)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-stone-200 text-[#b98f2f] hover:bg-[#f7efd9]"
+              aria-label={`${value} star rating`}
+            >
+              <Star className={value <= rating ? "fill-current" : ""} size={22} />
+            </button>
+          ))}
+        </div>
+
+        <label className="mt-5 grid gap-2">
+          <span className="text-sm font-semibold text-stone-800">Review</span>
+          <textarea
+            value={review}
+            onChange={(event) => setReview(event.target.value)}
+            className="field-input min-h-28 resize-none"
+            placeholder="Tell us about your therapist, comfort, hygiene, or overall experience"
+            maxLength={400}
+          />
+        </label>
+
+        {error ? <p className="mt-3 text-sm font-semibold text-red-600">{error}</p> : null}
+
+        <button
+          type="button"
+          onClick={submitRating}
+          disabled={submitting}
+          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-emerald-900 px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          {submitting ? <Loader2 className="animate-spin" size={18} /> : <Star size={18} />}
+          Submit rating
+        </button>
+      </div>
     </div>
   );
 }
