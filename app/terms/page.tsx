@@ -5,12 +5,12 @@ export default function TermsPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-stone-50 px-4 py-16 sm:px-6 lg:px-8">
-        <article className="mx-auto max-w-3xl rounded-lg bg-white p-8 shadow-sm">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-800">
+      <main className="bg-[#f6f1ec] px-4 py-16 sm:px-6 lg:px-8">
+        <article className="mx-auto max-w-3xl rounded-lg bg-[#ffffff] p-8 shadow-sm">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9a5b48]">
             Terms & Conditions
           </p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-stone-950">
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-[#101816]">
             Clear offer conditions
           </h1>
           <div className="mt-8 grid gap-6 text-sm leading-7 text-stone-700">

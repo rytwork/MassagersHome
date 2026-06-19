@@ -53,15 +53,15 @@ export function HomeReviews({ fallback }: { fallback: FallbackReview[] }) {
       {reviews.map((review) => (
         <figure
           key={review.id}
-          className="min-w-[82vw] snap-start rounded-lg border border-stone-200 bg-[#fbfaf5] p-5 shadow-sm sm:min-w-[380px] sm:p-6 dark:border-white/10 dark:bg-stone-950/60"
+          className="min-w-[82vw] snap-start rounded-lg border border-[#9a5b48]/24 bg-[#ffffff] p-5 shadow-sm shadow-[#101816]/5 sm:min-w-[380px] sm:p-6 dark:border-white/10 dark:bg-stone-950/60"
         >
           <div className="flex items-center gap-3">
             <div>
-              <figcaption className="font-semibold">{review.name}</figcaption>
+              <figcaption className="professional-heading text-xl">{review.name}</figcaption>
               <p className="mt-1 text-xs font-medium text-stone-500 dark:text-stone-400">
                 {review.serviceName}
               </p>
-              <p className="mt-1 flex gap-0.5 text-[#d5b46a]">
+              <p className="mt-1 flex gap-0.5 text-[#9a5b48]">
                 {[1, 2, 3, 4, 5].map((item) => (
                   <Star
                     key={item}

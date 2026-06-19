@@ -174,7 +174,7 @@ export function BookingForm() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-      <form onSubmit={handleSubmit} className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
+      <form onSubmit={handleSubmit} className="professional-surface rounded-lg p-5 sm:p-8">
         <div className="grid gap-5">
           <Field label="Name" error={errors.name} icon={<User size={18} />}>
             <input
@@ -267,7 +267,7 @@ export function BookingForm() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-md bg-emerald-900 px-5 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-950/15 transition hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-70"
+          className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#101816] px-5 py-4 text-sm font-semibold text-[#fff3ea] shadow-lg shadow-[#101816]/15 transition hover:bg-[#6f3d35] hover:text-white disabled:cursor-not-allowed disabled:opacity-70"
         >
           {loading ? <Loader2 className="animate-spin" size={18} /> : <CreditCard size={18} />}
           Continue to secure payment
@@ -275,11 +275,12 @@ export function BookingForm() {
         {status ? <p className="mt-4 text-sm font-medium text-stone-600">{status}</p> : null}
       </form>
 
-      <aside className="h-fit rounded-lg bg-stone-950 p-6 text-white shadow-xl shadow-stone-900/15">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
-          Smart offer applied
+      <aside className="professional-dark h-fit rounded-lg border border-[#9a5b48]/25 p-6 text-white shadow-xl shadow-[#101816]/20">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fff3ea]">
+          Private booking concierge
         </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight">{selectedService.name}</h2>
+        <h2 className="professional-heading mt-3 text-4xl tracking-normal">{selectedService.name}</h2>
+        <span className="accent-divider mt-4" />
         <p className="mt-3 text-stone-300">{selectedService.description}</p>
         <div className="mt-6 grid gap-3 text-sm">
           <Summary label="Duration" value={selectedService.duration} />
@@ -291,7 +292,7 @@ export function BookingForm() {
           Your final payable amount is calculated at checkout. The first 2 completed free-session
           bookings only charge the visit fee; later bookings use the full service price.
         </div>
-        <div className="mt-3 rounded-md border border-emerald-300/20 bg-emerald-300/10 p-4 text-sm leading-6 text-emerald-50">
+        <div className="mt-3 rounded-md border border-[#9a5b48]/25 bg-[#9a5b48]/10 p-4 text-sm leading-6 text-[#fff3ea]">
           Service is currently available only in Muzaffarnagar, Saharanpur, Meerut, and Shamli
           districts of Uttar Pradesh.
         </div>
@@ -325,9 +326,9 @@ function Field({
 
 function Summary({ label, value, strong }: { label: string; value: string; strong?: boolean }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-md bg-white/5 px-4 py-3">
+    <div className="flex items-center justify-between gap-4 rounded-md border border-white/10 bg-white/5 px-4 py-3">
       <span className="text-stone-300">{label}</span>
-      <span className={strong ? "text-lg font-semibold text-emerald-200" : "font-semibold"}>
+      <span className={strong ? "text-lg font-semibold text-[#fff3ea]" : "font-semibold"}>
         {value}
       </span>
     </div>

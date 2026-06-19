@@ -79,8 +79,8 @@ export function AccountDashboard() {
 
   if (loadingUser) {
     return (
-      <div className="rounded-lg border border-stone-200 bg-white p-8 text-center shadow-sm">
-        <Loader2 className="mx-auto animate-spin text-emerald-800" size={28} />
+      <div className="professional-surface rounded-lg p-8 text-center">
+        <Loader2 className="mx-auto animate-spin text-[#9a5b48]" size={28} />
         <p className="mt-3 text-sm font-medium text-stone-600">Checking your account...</p>
       </div>
     );
@@ -88,13 +88,13 @@ export function AccountDashboard() {
 
   return (
     <div className="grid gap-8">
-      <section className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
+      <section className="professional-surface rounded-lg p-5">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-800">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9a5b48]">
               User account
             </p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">
+            <h1 className="professional-heading mt-2 text-4xl tracking-normal text-stone-950">
               {user?.displayName || user?.email || user?.phoneNumber || "My account"}
             </h1>
             <p className="mt-2 text-sm text-stone-600">
@@ -108,7 +108,7 @@ export function AccountDashboard() {
                 if (user) void loadBookings(user);
               }}
               disabled={loadingBookings}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-stone-200 bg-white px-4 text-sm font-semibold text-stone-800 hover:border-emerald-700 hover:text-emerald-900 disabled:opacity-60"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-[#9a5b48]/35 bg-white px-4 text-sm font-semibold text-stone-800 hover:border-[#9a5b48] hover:text-[#6f3d35] disabled:opacity-60"
             >
               {loadingBookings ? <Loader2 className="animate-spin" size={17} /> : <RefreshCw size={17} />}
               Refresh
@@ -116,7 +116,7 @@ export function AccountDashboard() {
             <button
               type="button"
               onClick={handleSignOut}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-stone-950 px-4 text-sm font-semibold text-white hover:bg-stone-800"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#101816] px-4 text-sm font-semibold text-[#fff3ea] hover:bg-[#6f3d35] hover:text-white"
             >
               <LogOut size={17} />
               Sign out
@@ -127,8 +127,8 @@ export function AccountDashboard() {
 
       <section>
         <div className="mb-5 flex items-center gap-2">
-          <CalendarCheck className="text-emerald-800" size={22} />
-          <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Book a session</h2>
+          <CalendarCheck className="text-[#9a5b48]" size={22} />
+          <h2 className="professional-heading text-3xl tracking-normal text-stone-950">Book a session</h2>
         </div>
         {pendingRatingBooking ? (
           <div className="rounded-lg border border-amber-200 bg-amber-50 p-6 shadow-sm">
@@ -150,19 +150,19 @@ export function AccountDashboard() {
         )}
       </section>
 
-      <section className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm">
-        <div className="flex flex-col gap-2 border-b border-stone-200 px-5 py-4 md:flex-row md:items-center md:justify-between">
+      <section className="overflow-hidden rounded-lg border border-[#9a5b48]/24 bg-[#ffffff] shadow-sm shadow-[#101816]/5">
+        <div className="flex flex-col gap-2 border-b border-[#9a5b48]/20 px-5 py-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-xl font-semibold tracking-tight text-stone-950">Your bookings</h2>
+            <h2 className="professional-heading text-2xl tracking-normal text-stone-950">Your bookings</h2>
             <p className="mt-1 text-sm font-medium text-stone-600">{message}</p>
           </div>
-          <Link href="/services" className="text-sm font-semibold text-emerald-800">
+          <Link href="/services" className="text-sm font-semibold text-[#9a5b48]">
             View services
           </Link>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[760px] text-left text-sm">
-            <thead className="bg-stone-100 text-xs uppercase tracking-[0.14em] text-stone-600">
+            <thead className="bg-[#101816] text-xs uppercase tracking-[0.14em] text-[#fff3ea]">
               <tr>
                 <th className="px-4 py-4">Service</th>
                 <th className="px-4 py-4">District</th>
@@ -173,7 +173,7 @@ export function AccountDashboard() {
                 <th className="px-4 py-4">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-stone-200">
+            <tbody className="divide-y divide-[#9a5b48]/16">
               {bookings.map((booking) => (
                 <tr key={booking.id}>
                   <td className="px-4 py-4 align-top">
@@ -200,7 +200,7 @@ export function AccountDashboard() {
                       : "Normal pricing"}
                   </td>
                   <td className="px-4 py-4 align-top">
-                    <span className="inline-flex rounded-md bg-stone-100 px-3 py-1 text-xs font-semibold capitalize text-stone-800">
+                    <span className="inline-flex rounded-md bg-[#f3e0d4] px-3 py-1 text-xs font-semibold capitalize text-[#101816]">
                       {booking.status}
                     </span>
                   </td>
@@ -273,7 +273,7 @@ function RatingPopup({
   return (
     <div className="fixed inset-0 z-50 flex items-end bg-stone-950/45 px-4 pb-5 backdrop-blur-sm sm:items-center sm:justify-center">
       <div className="w-full max-w-lg rounded-lg bg-white p-6 shadow-2xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-800">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9a5b48]">
           Session completed
         </p>
         <h2 className="mt-3 text-2xl font-semibold tracking-tight text-stone-950">
@@ -315,7 +315,7 @@ function RatingPopup({
           type="button"
           onClick={submitRating}
           disabled={submitting}
-          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-emerald-900 px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-70"
+          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#101816] px-5 py-3 text-sm font-semibold text-white hover:bg-[#6f3d35] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {submitting ? <Loader2 className="animate-spin" size={18} /> : <Star size={18} />}
           Submit rating

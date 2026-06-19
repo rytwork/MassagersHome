@@ -9,7 +9,7 @@ export default function ServicesPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-stone-50">
+      <main className="bg-[#f6f1ec]">
         <section className="px-4 py-16 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Services"

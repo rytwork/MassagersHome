@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf9;
-  --foreground: #1c1917;
+  --background: #f6f1ec;
+  --foreground: #17201d;
+  --brand-ink: #101816;
+  --brand-primary: #9a5b48;
+  --brand-accent: #c7865a;
+  --brand-ivory: #fffaf5;
 }
 
 @theme inline {
@@ -25,6 +29,33 @@ body {
   color: var(--foreground);
 }
 
+.professional-heading {
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-weight: 700;
+}
+
+.professional-surface {
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 0.98), rgb(255 250 245 / 0.94)),
+    radial-gradient(circle at 15% 20%, rgb(154 91 72 / 0.12), transparent 34%);
+  border: 1px solid rgb(154 91 72 / 0.18);
+  box-shadow: 0 20px 60px rgb(16 24 22 / 0.08);
+}
+
+.professional-dark {
+  background:
+    linear-gradient(135deg, rgb(16 24 22 / 0.98), rgb(62 39 33 / 0.94)),
+    radial-gradient(circle at 80% 10%, rgb(199 134 90 / 0.2), transparent 30%);
+}
+
+.accent-divider {
+  display: block;
+  height: 3px;
+  width: 4rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0c0a09;
@@ -43,17 +74,17 @@ textarea {
 .field-input {
   width: 100%;
   border-radius: 0.375rem;
-  border: 1px solid #d6d3d1;
-  background: #ffffff;
+  border: 1px solid rgb(154 91 72 / 0.2);
+  background: rgb(255 255 255 / 0.96);
   padding: 0.875rem 1rem;
-  color: #1c1917;
+  color: #17201d;
   outline: none;
-  box-shadow: 0 1px 2px rgb(28 25 23 / 0.04);
+  box-shadow: 0 1px 2px rgb(16 24 22 / 0.04);
 }
 
 .field-input:focus {
-  border-color: #047857;
-  box-shadow: 0 0 0 4px rgb(16 185 129 / 0.14);
+  border-color: #9a5b48;
+  box-shadow: 0 0 0 4px rgb(154 91 72 / 0.16);
 }
 
 details::details-content {

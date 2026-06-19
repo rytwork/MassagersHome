@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   BadgeCheck,
@@ -7,7 +8,9 @@ import {
   Crown,
   HeartHandshake,
   Leaf,
+  MapPin,
   MessageCircle,
+  Phone,
   ShieldCheck,
   Sparkles,
   Star,
@@ -20,9 +23,9 @@ import { Navbar } from "@/components/Navbar";
 import { services as serviceCatalog } from "@/lib/services";
 
 const heroStats = [
-  { label: "Rating", value: "4.9", icon: Star },
-  { label: "Certified Therapists", value: "100%", icon: BadgeCheck },
-  { label: "Customers", value: "10k+", icon: HeartHandshake },
+  { label: "Avg. Rating", value: "4.9", icon: Star },
+  { label: "Verified Pros", value: "100%", icon: BadgeCheck },
+  { label: "Happy Clients", value: "10k+", icon: HeartHandshake },
 ];
 
 const servicePresentation = {
@@ -100,7 +103,7 @@ const plans = [
     recommended: true,
   },
   {
-    name: "Luxury",
+    name: "Elite",
     price: "Rs. 1,499",
     note: "Spa-grade ritual",
     perks: ["90-minute session", "Premium oils", "Extended recovery care", "Concierge support"],
@@ -155,36 +158,47 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="overflow-hidden bg-[#fbfaf5] text-stone-950 dark:bg-stone-950 dark:text-stone-50">
+      <main className="overflow-hidden bg-[#f6f1ec] text-stone-950 dark:bg-stone-950 dark:text-stone-50">
         <section
           id="home"
-          className="relative min-h-[calc(100svh-104px)] bg-[linear-gradient(90deg,rgba(16,32,29,0.86),rgba(16,32,29,0.48)),url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=2200&q=85')] bg-cover bg-center text-white lg:min-h-[calc(100vh-72px)]"
+          className="relative min-h-[calc(100svh-104px)] bg-[linear-gradient(90deg,rgba(17,24,39,0.94),rgba(58,45,26,0.72),rgba(58,45,26,0.28)),url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=2200&q=85')] bg-cover bg-center text-white lg:min-h-[calc(100vh-72px)]"
         >
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#fbfaf5] to-transparent dark:from-stone-950" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#f6f1ec] to-transparent dark:from-stone-950" />
           <div className="relative mx-auto grid min-h-[calc(100svh-104px)] max-w-7xl content-center gap-8 px-4 py-12 sm:px-6 sm:py-18 lg:min-h-[calc(100vh-72px)] lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-24">
             <div className="max-w-3xl">
-              <p className="inline-flex max-w-full items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-xs font-semibold text-emerald-50 shadow-lg backdrop-blur-md sm:px-4 sm:text-sm">
+              <p className="inline-flex max-w-full items-center gap-2 rounded-lg border border-[#9a5b48]/35 bg-white/10 px-3 py-2 text-xs font-semibold text-[#fff3ea] shadow-lg backdrop-blur-md sm:px-4 sm:text-sm">
                 <Sparkles size={16} />
-                <span className="truncate">Premium home wellness, on your schedule</span>
+                <span className="truncate">Premium Home Massage Service</span>
               </p>
-              <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight sm:mt-6 sm:text-6xl lg:text-7xl">
-                Relax & Rejuvenate at Home
+              <h1 className="professional-heading mt-5 max-w-4xl text-5xl tracking-normal sm:mt-6 sm:text-7xl lg:text-8xl">
+                Spa-level massage, delivered to your home
               </h1>
+              <span className="accent-divider mt-6" />
               <p className="mt-5 max-w-2xl text-base leading-7 text-stone-100 sm:mt-6 sm:text-xl sm:leading-8">
                 Certified therapists deliver a calm, spa-level massage experience to your home
                 with hygienic care, secure booking, and premium service standards.
               </p>
+              <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-stone-100 sm:text-sm">
+                <span className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-md">
+                  <MapPin size={15} />
+                  Muzaffarnagar, Saharanpur, Meerut & Shamli
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-md">
+                  <Phone size={15} />
+                  WhatsApp-first support
+                </span>
+              </div>
               <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row">
                 <Link
                   href="/booking"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-[#d5b46a] px-5 text-sm font-bold text-stone-950 shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-[#e3c47a] sm:h-13 sm:px-6"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-[#c7865a] px-5 text-sm font-bold text-[#101816] shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:bg-[#6f3d35] hover:text-white sm:h-13 sm:px-6"
                 >
                   <CalendarCheck size={18} />
                   Book Massage
                 </Link>
                 <Link
                   href="#services"
-                  className="inline-flex h-12 items-center justify-center rounded-lg border border-white/35 bg-white/10 px-5 text-sm font-bold text-white shadow-lg backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18 sm:h-13 sm:px-6"
+                  className="inline-flex h-12 items-center justify-center rounded-lg border border-[#9a5b48]/45 bg-white/10 px-5 text-sm font-bold text-white shadow-lg backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18 sm:h-13 sm:px-6"
                 >
                   Explore Services
                 </Link>
@@ -192,15 +206,37 @@ export default function Home() {
             </div>
 
             <div className="grid gap-4 self-end lg:justify-items-end">
+              <div className="w-full max-w-xl rounded-lg border border-[#9a5b48]/35 bg-[#ffffff]/94 p-4 text-stone-950 shadow-2xl shadow-black/20 backdrop-blur-xl sm:p-5">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm">
+                    <Image
+                      src="/massagershome-logo.png"
+                      alt="MassagersHome logo"
+                      width={160}
+                      height={160}
+                      className="h-full w-full object-contain p-1"
+                      priority
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#9a5b48]">
+                      MassagersHome
+                    </p>
+                    <p className="professional-heading mt-2 text-xl leading-tight sm:text-3xl">
+                      Premium home wellness with verified care
+                    </p>
+                  </div>
+                </div>
+              </div>
               <div className="grid w-full max-w-xl grid-cols-3 gap-2 sm:gap-3">
                 {heroStats.map((stat) => {
                   const Icon = stat.icon;
                   return (
                     <div
                       key={stat.label}
-                      className="rounded-lg border border-white/20 bg-white/12 p-3 shadow-2xl backdrop-blur-xl sm:p-4"
+                      className="rounded-lg border border-[#9a5b48]/25 bg-white/12 p-3 shadow-2xl backdrop-blur-xl sm:p-4"
                     >
-                      <Icon className="text-[#f0d690]" size={17} />
+                      <Icon className="text-[#fff3ea]" size={17} />
                       <p className="mt-2 text-xl font-semibold sm:mt-3 sm:text-2xl">{stat.value}</p>
                       <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-stone-100 sm:text-xs sm:tracking-[0.14em]">
                         {stat.label}
@@ -209,8 +245,8 @@ export default function Home() {
                   );
                 })}
               </div>
-              <div className="w-full max-w-xl rounded-lg border border-white/20 bg-white/14 p-4 shadow-2xl backdrop-blur-xl sm:p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#f0d690] sm:text-sm sm:tracking-[0.18em]">
+              <div className="w-full max-w-xl rounded-lg border border-[#9a5b48]/25 bg-white/14 p-4 shadow-2xl backdrop-blur-xl sm:p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#fff3ea] sm:text-sm sm:tracking-[0.18em]">
                   Today&apos;s calm
                 </p>
                 <p className="mt-3 text-xl font-semibold sm:text-2xl">Available slots from 10:00 AM</p>
@@ -225,9 +261,9 @@ export default function Home() {
 
         <SectionIntro
           id="services"
-          eyebrow="Service Categories"
-          title="Premium treatments for every wellness goal"
-          description="Six curated therapies designed for relaxation, pain relief, recovery, and restorative home care."
+          eyebrow="Signature Treatments"
+          title="Curated rituals for calm, recovery, and renewal"
+          description="A focused menu of therapist-led home treatments, designed with spa-grade hygiene and premium service rituals."
         />
         <section className="px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -239,28 +275,32 @@ export default function Home() {
               return (
                 <article
                   key={service.id}
-                  className="group overflow-hidden rounded-lg border border-stone-200/70 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-950/10 dark:border-white/10 dark:bg-white/6"
+                  className="group overflow-hidden rounded-lg border border-[#9a5b48]/22 bg-[#ffffff] shadow-sm shadow-[#101816]/5 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#101816]/12 dark:border-[#9a5b48]/18 dark:bg-white/6"
                 >
-                  <div
-                    className="h-52 bg-cover bg-center transition duration-500 group-hover:scale-[1.03]"
-                    style={{ backgroundImage: `url(${presentation.image})` }}
-                  />
+                  <div className="overflow-hidden">
+                    <div
+                      className="h-56 bg-cover bg-center transition duration-700 group-hover:scale-[1.05]"
+                      style={{
+                        backgroundImage: `linear-gradient(180deg, transparent 48%, rgba(17,24,39,0.5)), url(${presentation.image})`,
+                      }}
+                    />
+                  </div>
                   <div className="p-5">
                     <div className="flex items-start justify-between gap-3">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-50 text-emerald-900 dark:bg-emerald-300/10 dark:text-emerald-200">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#101816] text-[#fff3ea] dark:bg-[#fff3ea]/10 dark:text-[#fff3ea]">
                         <Icon size={21} />
                       </div>
-                      <p className="rounded-lg bg-[#f7efd9] px-3 py-1 text-xs font-bold text-stone-900 sm:text-sm dark:bg-[#d5b46a]/20 dark:text-[#f0d690]">
+                      <p className="rounded-lg bg-[#f3e0d4] px-3 py-1 text-xs font-bold text-[#101816] sm:text-sm dark:bg-[#9a5b48]/20 dark:text-[#fff3ea]">
                         From Rs. {service.price}
                       </p>
                     </div>
-                    <h3 className="mt-5 text-xl font-semibold tracking-tight">{service.name}</h3>
+                    <h3 className="professional-heading mt-5 text-2xl tracking-normal">{service.name}</h3>
                     <p className="mt-3 min-h-16 text-sm leading-6 text-stone-600 dark:text-stone-300">
                       {service.description}
                     </p>
                     <Link
                       href={`/booking?service=${service.id}`}
-                      className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-lg border border-emerald-900/15 px-4 text-sm font-bold text-emerald-900 transition hover:bg-emerald-900 hover:text-white dark:border-emerald-300/20 dark:text-emerald-200"
+                      className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-lg border border-[#9a5b48]/45 px-4 text-sm font-bold text-[#9a5b48] transition hover:bg-[#101816] hover:text-[#fff3ea] dark:border-[#9a5b48]/25 dark:text-[#fff3ea]"
                     >
                       Book this service
                     </Link>
@@ -271,22 +311,22 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="how-it-works" className="bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 dark:bg-white/5">
+        <section id="how-it-works" className="professional-dark px-4 py-16 text-white sm:px-6 sm:py-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <SectionHeading eyebrow="How It Works" title="A seamless spa journey in three steps" />
             <div className="mt-12 grid gap-5 md:grid-cols-3">
               {steps.map((step, index) => {
                 const Icon = step.icon;
                 return (
-                  <article key={step.title} className="rounded-lg border border-stone-200 bg-[#fbfaf5] p-6 shadow-sm dark:border-white/10 dark:bg-stone-950/60">
+                  <article key={step.title} className="rounded-lg border border-[#9a5b48]/25 bg-white/8 p-6 shadow-sm backdrop-blur-md">
                     <div className="flex items-center justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-900 text-white">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#c7865a] text-[#101816]">
                         <Icon size={22} />
                       </div>
-                      <span className="text-5xl font-semibold text-[#d5b46a]/45">0{index + 1}</span>
+                      <span className="professional-heading text-6xl text-[#fff3ea]/45">0{index + 1}</span>
                     </div>
-                    <h3 className="mt-6 text-xl font-semibold">{step.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-stone-300">{step.text}</p>
+                    <h3 className="professional-heading mt-6 text-2xl">{step.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-stone-200">{step.text}</p>
                   </article>
                 );
               })}
@@ -297,12 +337,13 @@ export default function Home() {
         <section id="about" className="px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-emerald-800 dark:text-emerald-300">
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#9a5b48] dark:text-[#fff3ea]">
                 Why Choose Us
               </p>
-              <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-                Luxury care, professional trust, and everyday convenience
+              <h2 className="professional-heading mt-3 text-4xl tracking-normal sm:text-6xl">
+                Professional care, verified trust, and everyday convenience
               </h2>
+              <span className="accent-divider mt-5" />
               <p className="mt-5 text-base leading-8 text-stone-600 dark:text-stone-300">
                 MassagersHome brings verified wellness professionals to your doorstep with
                 transparent pricing, clean service rituals, and support that stays close.
@@ -311,11 +352,26 @@ export default function Home() {
             <div className="grid gap-4 sm:grid-cols-2">
               {features.map((feature) => {
                 const Icon = feature.icon;
+
                 return (
-                  <article key={feature.title} className="rounded-lg border border-stone-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-white/6">
-                    <Icon className="text-emerald-800 dark:text-emerald-300" size={23} />
-                    <h3 className="mt-4 font-semibold">{feature.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">{feature.text}</p>
+                  <article
+                    key={feature.title}
+                    className="rounded-xl border border-[#E8DDD3] bg-[#FDF8F3] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-[#3A302A] dark:bg-[#1F1A17]"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F5E6DA] dark:bg-[#2A211D]">
+                      <Icon
+                        className="text-[#9A5B48] dark:text-[#D4A373]"
+                        size={24}
+                      />
+                    </div>
+
+                    <h3 className="mt-4 text-xl font-semibold text-[#2D241F] dark:text-[#F5EDE6]">
+                      {feature.title}
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-7 text-[#6B5E57] dark:text-[#CBBFB7]">
+                      {feature.text}
+                    </p>
                   </article>
                 );
               })}
@@ -323,7 +379,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="pricing" className="px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <section id="pricing" className="bg-[#eadbd2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 dark:bg-white/5">
           <div className="mx-auto max-w-7xl">
             <SectionHeading eyebrow="Pricing" title="Choose the right wellness ritual" />
             <div className="mt-12 grid gap-5 lg:grid-cols-3">
@@ -332,24 +388,24 @@ export default function Home() {
                   key={plan.name}
                   className={
                     plan.recommended
-                      ? "relative rounded-lg border border-[#d5b46a] bg-emerald-950 p-5 text-white shadow-2xl shadow-emerald-950/20 sm:p-6"
-                      : "rounded-lg border border-stone-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/6"
+                      ? "relative rounded-lg border border-[#9a5b48] bg-[#101816] p-5 text-white shadow-2xl shadow-[#101816]/25 sm:p-6"
+                      : "rounded-lg border border-[#9a5b48]/24 bg-[#ffffff] p-6 shadow-sm shadow-[#101816]/5 dark:border-white/10 dark:bg-white/6"
                   }
                 >
                   {plan.recommended ? (
-                    <p className="mb-4 inline-flex rounded-lg bg-[#d5b46a] px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-stone-950 sm:absolute sm:right-5 sm:top-5 sm:mb-0">
+                    <p className="mb-4 inline-flex rounded-lg bg-[#c7865a] px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#101816] sm:absolute sm:right-5 sm:top-5 sm:mb-0">
                       Recommended
                     </p>
                   ) : null}
-                  <p className={plan.recommended ? "text-emerald-100" : "text-emerald-800 dark:text-emerald-300"}>
+                  <p className={plan.recommended ? "text-[#fff3ea]" : "text-[#9a5b48] dark:text-[#fff3ea]"}>
                     {plan.note}
                   </p>
-                  <h3 className="mt-3 text-2xl font-semibold">{plan.name}</h3>
+                  <h3 className="professional-heading mt-3 text-3xl">{plan.name}</h3>
                   <p className="mt-5 text-4xl font-semibold">{plan.price}</p>
                   <div className="mt-6 grid gap-3">
                     {plan.perks.map((perk) => (
                       <p key={perk} className="flex items-center gap-2 text-sm">
-                        <ShieldCheck size={16} className={plan.recommended ? "text-[#f0d690]" : "text-emerald-800 dark:text-emerald-300"} />
+                        <ShieldCheck size={16} className={plan.recommended ? "text-[#fff3ea]" : "text-[#9a5b48] dark:text-[#fff3ea]"} />
                         {perk}
                       </p>
                     ))}
@@ -358,8 +414,8 @@ export default function Home() {
                     href="/booking"
                     className={
                       plan.recommended
-                        ? "mt-7 inline-flex h-12 w-full items-center justify-center rounded-lg bg-[#d5b46a] px-4 text-sm font-bold text-stone-950 transition hover:bg-[#e3c47a]"
-                        : "mt-7 inline-flex h-12 w-full items-center justify-center rounded-lg border border-stone-200 px-4 text-sm font-bold transition hover:border-emerald-800 hover:text-emerald-900 dark:border-white/15 dark:hover:text-emerald-200"
+                        ? "mt-7 inline-flex h-12 w-full items-center justify-center rounded-lg bg-[#c7865a] px-4 text-sm font-bold text-[#101816] transition hover:bg-[#6f3d35] hover:text-white"
+                        : "mt-7 inline-flex h-12 w-full items-center justify-center rounded-lg border border-[#9a5b48]/40 px-4 text-sm font-bold text-[#9a5b48] transition hover:bg-[#101816] hover:text-[#fff3ea] dark:border-white/15 dark:hover:text-[#fff3ea]"
                     }
                   >
                     Book Plan
@@ -370,7 +426,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 dark:bg-white/5">
+        <section className="bg-[#fffaf5] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 dark:bg-white/5">
           <div className="mx-auto max-w-7xl">
             <SectionHeading eyebrow="Testimonials" title="Loved by customers who value calm" />
             <HomeReviews fallback={testimonials} />
@@ -384,7 +440,7 @@ export default function Home() {
               {faqs.map((faq) => (
                 <details
                   key={faq.question}
-                  className="group rounded-lg border border-stone-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/6"
+                  className="group rounded-lg border border-[#9a5b48]/24 bg-[#ffffff] p-5 shadow-sm shadow-[#101816]/5 dark:border-white/10 dark:bg-white/6"
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold sm:text-base">
                     {faq.question}
@@ -418,10 +474,11 @@ function SectionIntro({
   return (
     <section id={id} className="px-4 pb-10 pt-16 sm:px-6 sm:pb-12 sm:pt-24 lg:px-8">
       <div className="mx-auto max-w-3xl text-center">
-        <p className="text-sm font-bold uppercase tracking-[0.18em] text-emerald-800 dark:text-emerald-300">
+        <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#9a5b48] dark:text-[#fff3ea]">
           {eyebrow}
         </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">{title}</h2>
+        <h2 className="professional-heading mt-3 text-4xl tracking-normal sm:text-6xl">{title}</h2>
+        <span className="accent-divider mx-auto mt-5" />
         <p className="mt-5 text-base leading-8 text-stone-600 dark:text-stone-300">{description}</p>
       </div>
     </section>
@@ -431,10 +488,11 @@ function SectionIntro({
 function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div className="max-w-3xl">
-      <p className="text-sm font-bold uppercase tracking-[0.18em] text-emerald-800 dark:text-emerald-300">
+      <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#9a5b48] dark:text-[#fff3ea]">
         {eyebrow}
       </p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">{title}</h2>
+      <h2 className="professional-heading mt-3 text-4xl tracking-normal sm:text-6xl">{title}</h2>
+      <span className="accent-divider mt-5" />
     </div>
   );
 }

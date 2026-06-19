@@ -8,10 +8,10 @@ export default function PaymentSuccessPage() {
   return (
     <>
       <Navbar />
-      <main className="grid min-h-[60vh] place-items-center bg-stone-50 px-4 py-16">
-        <section className="max-w-xl rounded-lg bg-white p-8 text-center shadow-sm">
-          <CheckCircle2 className="mx-auto text-emerald-700" size={56} />
-          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-stone-950">
+      <main className="grid min-h-[60vh] place-items-center bg-[#f6f1ec] px-4 py-16">
+        <section className="max-w-xl rounded-lg bg-[#ffffff] p-8 text-center shadow-sm">
+          <CheckCircle2 className="mx-auto text-[#6f3d35]" size={56} />
+          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-[#101816]">
             Booking confirmed
           </h1>
           <p className="mt-3 text-stone-600">
@@ -21,7 +21,7 @@ export default function PaymentSuccessPage() {
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
               href="/account"
-              className="inline-flex items-center justify-center rounded-md bg-emerald-900 px-5 py-3 text-sm font-semibold text-white"
+              className="inline-flex items-center justify-center rounded-md bg-[#101816] px-5 py-3 text-sm font-semibold text-white"
             >
               View my bookings
             </Link>

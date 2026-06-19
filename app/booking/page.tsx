@@ -7,7 +7,7 @@ export default function BookingPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-stone-50 px-4 py-16 sm:px-6 lg:px-8">
+      <main className="bg-[#f6f1ec] px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <AccountDashboard />
         </div>

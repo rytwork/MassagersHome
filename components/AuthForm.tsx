@@ -3,10 +3,13 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithCustomToken } from "firebase/auth";
-import { Loader2, Lock, Mail, ShieldCheck } from "lucide-react";
+import { Loader2, Lock, Mail, MessageCircle, ShieldCheck } from "lucide-react";
 import { getFirebaseAuth } from "@/lib/firebase-client";
 
 type Step = "email" | "otp";
+
+const otpHelpMessage = "Hi MassagersHome, I did not receive my login OTP.";
+const whatsappOtpHelpUrl = `https://wa.me/919457037015?text=${encodeURIComponent(otpHelpMessage)}`;
 
 export function AuthForm() {
   const router = useRouter();
@@ -53,7 +56,7 @@ export function AuthForm() {
 
         setEmail(data.email ?? email);
         setStep("otp");
-        setMessage("OTP sent. Enter it below to continue.");
+        setMessage("OTP sent. If it is not in your inbox, kindly check spam.");
         setLoading(false);
         return;
       }
@@ -78,20 +81,21 @@ export function AuthForm() {
   }
 
   return (
-    <div className="mx-auto grid max-w-md gap-5 rounded-lg border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
+    <div className="professional-surface mx-auto grid max-w-md gap-5 rounded-lg p-5 sm:p-8">
       <div>
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-800">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9a5b48]">
           Account
         </p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">
+        <h1 className="professional-heading mt-2 text-4xl tracking-normal text-stone-950">
           Login with OTP
         </h1>
+        <span className="accent-divider mt-4" />
         <p className="mt-3 text-sm leading-6 text-stone-600">
           Enter your email address. New customers are signed up automatically after OTP verification.
         </p>
       </div>
 
-      <div className="flex items-center gap-3 rounded-md border border-emerald-900/10 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-950">
+      <div className="flex items-center gap-3 rounded-md border border-[#9a5b48]/25 bg-[#101816] px-4 py-3 text-sm font-medium text-[#fff3ea]">
         <ShieldCheck size={18} />
         <span>{step === "email" ? "Step 1 of 2: verify your email address." : "Step 2 of 2: enter the OTP."}</span>
       </div>
@@ -129,13 +133,26 @@ export function AuthForm() {
               placeholder="Enter OTP"
               required
             />
+            <span className="text-sm leading-6 text-stone-600">
+              If you do not get the OTP in your inbox, kindly check spam or{" "}
+              <a
+                href={whatsappOtpHelpUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 font-semibold text-[#9a5b48] hover:text-[#6f3d35]"
+              >
+                <MessageCircle size={15} />
+                contact us on WhatsApp
+              </a>
+              .
+            </span>
           </label>
         ) : null}
 
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-emerald-900 px-5 text-sm font-semibold text-white transition hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-[#101816] px-5 text-sm font-semibold text-[#fff3ea] shadow-lg shadow-[#101816]/15 transition hover:bg-[#6f3d35] hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? <Loader2 className="animate-spin" size={17} /> : <Lock size={17} />}
           {step === "email" ? "Send OTP" : "Verify and continue"}
@@ -149,7 +166,7 @@ export function AuthForm() {
               setOtp("");
               setMessage("Edit your email address and request a fresh OTP.");
             }}
-            className="text-sm font-semibold text-emerald-800"
+            className="text-sm font-semibold text-[#9a5b48]"
           >
             Change email address
           </button>

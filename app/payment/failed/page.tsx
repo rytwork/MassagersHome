@@ -8,10 +8,10 @@ export default function PaymentFailedPage() {
   return (
     <>
       <Navbar />
-      <main className="grid min-h-[60vh] place-items-center bg-stone-50 px-4 py-16">
-        <section className="max-w-xl rounded-lg bg-white p-8 text-center shadow-sm">
+      <main className="grid min-h-[60vh] place-items-center bg-[#f6f1ec] px-4 py-16">
+        <section className="max-w-xl rounded-lg bg-[#ffffff] p-8 text-center shadow-sm">
           <XCircle className="mx-auto text-red-600" size={56} />
-          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-stone-950">
+          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-[#101816]">
             Payment not confirmed
           </h1>
           <p className="mt-3 text-stone-600">
@@ -20,7 +20,7 @@ export default function PaymentFailedPage() {
           </p>
           <Link
             href="/account"
-            className="mt-7 inline-flex items-center justify-center gap-2 rounded-md bg-emerald-900 px-5 py-3 text-sm font-semibold text-white"
+            className="mt-7 inline-flex items-center justify-center gap-2 rounded-md bg-[#101816] px-5 py-3 text-sm font-semibold text-white"
           >
             <RotateCcw size={17} />
             Retry booking

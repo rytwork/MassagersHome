@@ -30,7 +30,7 @@ export function OfferPopup() {
         >
           <X size={18} />
         </button>
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-800">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9a5b48]">
           Limited availability
         </p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-stone-950">
@@ -44,7 +44,7 @@ export function OfferPopup() {
           <Link
             href="/booking"
             onClick={close}
-            className="inline-flex flex-1 items-center justify-center rounded-md bg-emerald-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-emerald-800"
+            className="inline-flex flex-1 items-center justify-center rounded-md bg-[#101816] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#6f3d35]"
           >
             Claim Offer
           </Link>

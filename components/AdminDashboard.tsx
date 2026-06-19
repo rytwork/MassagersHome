@@ -115,7 +115,7 @@ export function AdminDashboard() {
       <section className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-800">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9a5b48]">
               Admin account
             </p>
             <h1 className="mt-2 text-2xl font-semibold tracking-tight text-stone-950">
@@ -128,7 +128,7 @@ export function AdminDashboard() {
                 if (user) void loadBookings(user);
               }}
               disabled={loading || !authorized}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-emerald-900 px-5 text-sm font-semibold text-white transition hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#101816] px-5 text-sm font-semibold text-white transition hover:bg-[#6f3d35] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? <Loader2 className="animate-spin" size={17} /> : <RefreshCw size={17} />}
               Refresh
@@ -167,8 +167,8 @@ export function AdminDashboard() {
             onClick={() => setFilter(statusFilter)}
             className={
               filter === statusFilter
-                ? "rounded-md bg-emerald-900 px-4 py-2 text-sm font-semibold capitalize text-white"
-                : "rounded-md border border-stone-200 bg-white px-4 py-2 text-sm font-semibold capitalize text-stone-700 hover:border-emerald-700 hover:text-emerald-900"
+                ? "rounded-md bg-[#101816] px-4 py-2 text-sm font-semibold capitalize text-white"
+                : "rounded-md border border-stone-200 bg-white px-4 py-2 text-sm font-semibold capitalize text-stone-700 hover:border-[#9a5b48] hover:text-[#101816]"
             }
           >
             {statusFilter}
@@ -239,7 +239,7 @@ export function AdminDashboard() {
                       <button
                         type="button"
                         onClick={() => changeStatus(booking.id, "completed")}
-                        className="mt-2 block rounded-md bg-emerald-900 px-3 py-2 text-xs font-semibold text-white hover:bg-emerald-800"
+                        className="mt-2 block rounded-md bg-[#101816] px-3 py-2 text-xs font-semibold text-white hover:bg-[#6f3d35]"
                       >
                         Complete
                       </button>
@@ -289,7 +289,7 @@ function Badge({ children, tone }: { children: React.ReactNode; tone: "green" | 
     <span
       className={
         tone === "green"
-          ? "inline-flex rounded-md bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900"
+          ? "inline-flex rounded-md bg-[#f3e0d4] px-3 py-1 text-xs font-semibold text-[#101816]"
           : "inline-flex rounded-md bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-900"
       }
     >
